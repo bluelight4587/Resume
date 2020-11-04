@@ -1,0 +1,148 @@
+<!doctype html>
+<html focus="Search">
+    <head>
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+         <!--<script src="/js/vue.min.js"></script>-->
+         <script src="https://unpkg.com/vue/dist/vue.js"></script>
+         <link type="text/css" href="/css/resume.css" />
+		 <title>Resume</title>
+         <style>
+            body,div,span,ul,ol,li,table,tr,td{margin:0;padding:0;border:none;list-style:none;}
+            .main_box{font-family: "微软雅黑";}
+            .title_box{border-bottom:solid 1px #ccc;text-align: center;}
+            .title_box .big{font-size: 30px; font-weight: bold;}
+            .body_box{}
+            .body_box .content_box1{width:1200px; margin:4px auto;}
+            .body_box .content_box1 .content_left{float:left;width:300px;min-height:800px;}
+            .body_box .content_box1 .content_right{float:left;width:892px;clear:right;border-left:solid 1px #ccc;min-height:800px;}
+            .body_box .content_box1 .content_right .career_list{}
+            .body_box .content_box2{}
+            .body_box .content_box2 .project_list{}
+
+         </style>
+    </head>
+    <body>
+        <div class="main_box" id="myApp">
+            <div class="title_box"><span class="big">dsada</span><br/>&#10148;&#9855;</div>
+            <div class="body_box">
+                <div class="content_box1">
+                    <div class="content_left">
+                        <div class="personal_info">
+                        <table>
+                            <tr>
+                                <td colspan="2">{{base_info.photo_path}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{base_info.name}}</td><td>{{base_info.sex}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{base_info.first_name}}</td><td>{{base_info.second_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{base_info.birthday}}</td><td>{{ConverLocalLink(base_info.native_place)}}</td>
+                            </tr>
+                            <tr>
+                                <td></td><td></td>
+                            </tr>
+                        </table>
+                        
+                        </div>
+                        <div class="contact_info"></div>
+                        <div class="education_info"></div>
+                        <div class="expected_info"></div>
+                    </div>
+                    <div class="content_right">
+                        <div class="skill_info">
+                            <ul>
+                                <li v-for="item in skill_list">
+                                    <div>
+                                        <span>{{item.name}}:</span><span style="display:block;background:linear-gradient(#51A825, #CBF0B9, #51A825);height:14px;" v-bind:style="{'width':PercentLength(200,item.level)+'px'}"></span>{{item.level}}
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="career_list"></div>
+                    </div>
+                </div>
+                <div class="content_box2">
+                    <div class="project_list"></div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </body>
+</html>
+<!-- https://blog.csdn.net/qq_32885597/article/details/88028508 -->
+
+<script type="text/javascript">
+    var app = new Vue({
+      el: '#myApp',
+      data: {
+        base_info:{
+            name:"", 
+            first_name:"Robert", 
+            last_name:"Ding", 
+            birthday:"", 
+            sex:"M", 
+            photo_path:"", 
+            native_place:"D:\Projects\ATS\IRES\Cloud_SVN\IRES", 
+            about_me:"", 
+            hobby:""
+        },
+        expected_info:{
+            expected_position:"", 
+            expectedrewards:"", 
+            working_age:"",
+            arrival_time:""
+        },
+        education_info:{
+            best_edu:"", 
+            edu_list:[
+                {from:"", to:"", school_name:"", major:"", major_course:""},
+            ]
+        },
+        contact_info:{
+            email:"", 
+            phone:"", 
+            mobile:""
+        },
+        skill_list:[
+            {name:"C#", level:"96"},
+            {name:"Java", level:"80"},
+            {name:"HTML", level:"99"},
+            {name:"CSS", level:"100"},
+            {name:"SQL", level:"100"},
+            {name:"javascript", level:"96"},
+            {name:"Angular6", level:"88"},
+            {name:"Tableau", level:"60"},
+        ],
+        work_history_list:[
+            {company:"", department:"", position:"", from:"", to:"", job_content:""},
+            {company:"", department:"", position:"", from:"", to:"", job_content:""},
+            {company:"", department:"", position:"", from:"", to:"", job_content:""},
+            {company:"", department:"", position:"", from:"", to:"", job_content:""},
+            {company:"", department:"", position:"", from:"", to:"", job_content:""},
+        ],
+        project_list:[
+            {name:"", type:"", run_environment:"", IDE:"", duty_model:"", description:"", pic_list:[{name:"",path:""},] },
+            {name:"", type:"", run_environment:"", IDE:"", duty_model:"", description:"", pic_list:[{name:"",path:""},] },
+            {name:"", type:"", run_environment:"", IDE:"", duty_model:"", description:"", pic_list:[{name:"",path:""},] },
+        ]
+      },
+      methods:{
+        PercentLength:function(length, percent){
+            return length*(percent/100);
+        },
+        ConverLocalLink:function(linkStr){
+            console.log(linkStr.replace('\\', "/"));
+            return linkStr.replace(/\\/g, "\\\\");
+        }
+      },
+    })
+
+
+
+
+</script>
